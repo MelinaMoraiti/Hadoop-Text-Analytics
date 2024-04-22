@@ -1,4 +1,4 @@
-package org.myorg;
+package code;
 
 import java.io.IOException;
 import java.util.*;

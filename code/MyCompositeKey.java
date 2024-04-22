@@ -1,4 +1,4 @@
-package org.myorg;
+package code;
 
 import java.io.DataInput;
 import java.io.DataOutput;
