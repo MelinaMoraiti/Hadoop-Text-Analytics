@@ -53,6 +53,30 @@ public class Main {
         FileOutputFormat.setOutputPath(conf2, new Path(args[2]));
 
         JobClient.runJob(conf2);
+/*  
+        JOB 3
+
+        JobConf conf3 = new JobConf(Job3.class);
+        conf3.setJobName("Job3");
+
+        conf3.setMapOutputKeyClass(Text.class);
+        conf3.setMapOutputValueClass(MyCompositeKey.class);
+        conf3.setOutputKeyClass(MyCompositeKey.class);
+        conf3.setOutputValueClass(IntWritable.class);
+
+        conf3.setMapperClass(CalculateTFIDFMapper.class);
+        //conf3.setCombinerClass(CalculateTFIDFReducer.class);
+        conf3.setReducerClass(CalculateTFIDFReducer.class);
+	
+        conf3.setInputFormat(SequenceFileInputFormat.class);
+        conf3.setOutputFormat(TextOutputFormat.class);
+
+        conf3.setNumReduceTasks(1);
+        FileInputFormat.setInputPaths(conf3, new Path(args[2])); // Input is Output of 2ND Job 
+        FileOutputFormat.setOutputPath(conf3, new Path(args[3]));
+
+        JobClient.runJob(conf3);
+*/
 
     }
 }
