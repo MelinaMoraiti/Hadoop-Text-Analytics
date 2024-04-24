@@ -41,7 +41,7 @@ public class MyCompositeKey implements WritableComparable<MyCompositeKey> {
     public void readFields(DataInput in) throws IOException {
         int size = in.readInt();
         components.clear();
-        for (int = 0; i < size; i++){
+        for (int i = 0; i < size; i++){
 	        components.add(in.readUTF())
         }
     }
