@@ -54,19 +54,22 @@ public class MyCompositeKey implements WritableComparable<MyCompositeKey> {
     }
     
     @Override
-    public boolean compareTo(MyCompositeKey other) {
-        //Compare by length first
+    public int compareTo(MyCompositeKey other) {
+        // Compare by length first
         if (components.size() != other.components.size()) {
-	        return false;
+            return Integer.compare(components.size(), other.components.size());
         }
-        // If sizes are equal compare by components
-	    for (int i = 0; i < components.size(); i++) { 
-	        if(!components.get(i).equals(other.components.get(i))) {
-	            return false;
-	        }
-	    }
-	    // If all components are equal return true
-        return true;
+        
+        // If sizes are equal, compare by components
+        for (int i = 0; i < components.size(); i++) {
+            int cmp = components.get(i).compareTo(other.components.get(i));
+            if (cmp != 0) {
+                return cmp;
+            }
+        }
+        
+        // If all components are equal, return 0
+        return 0;
     }
     @Override
     public boolean equals(Object obj) {
