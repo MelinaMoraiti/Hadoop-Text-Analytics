@@ -18,8 +18,8 @@ public class Job1 {
 	      
 	      StringTokenizer tokenizer = new StringTokenizer(line);
 	      while (tokenizer.hasMoreTokens()) {
-		mck.set(tokenizer.nextToken(), filename);
-		output.collect(mck, one);
+            mck.setComponents(Arrays.asList(tokenizer.nextToken(), filename));
+            output.collect(mck, one);
 	      }
 	    }
 	}
