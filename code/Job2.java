@@ -21,7 +21,7 @@ public class Job2 {
 		    String word = tokenizer.nextToken(); // 2nd token
             int n = Integer.parseInt(tokenizer.nextToken()); // 3rd token
             outputKey.set(docname);
-            outputVal.set(word, String.valueOf(n));
+            outputVal.setComponents(Arrays.asList(word, String.valueOf(n)));
             output.collect(outputKey, outputVal);
 	      }      
 	    }
@@ -30,22 +30,23 @@ public class Job2 {
 	public static class NoOfWordsInDocReducer extends MapReduceBase implements Reducer<Text, MyCompositeKey, MyCompositeKey, MyCompositeKey> {
 	    private MyCompositeKey outputKey = new MyCompositeKey();
             private MyCompositeKey outputVal = new MyCompositeKey();
-	    public void reduce(Text key, Iterator<MyCompositeKey> values, OutputCollector<MyCompositeKey, MyCompositeKey> output, Reporter reporter) throws IOException {
-	      List <MyCompositeKey> valueList = new ArrayList<>();
-	      int sum = 0;
-	      while (values.hasNext()) {
-            MyCompositeKey currentKey = values.next();
-            int wordFreq = Integer.parseInt(currentKey.getFilename()); // n
-            sum += wordFreq; // N 
-            valueList.add(new MyCompositeKey(currentKey.getLetter(),currentKey.getFilename()));
-	      }
-	      for(MyCompositeKey currentKey : valueList) {
-            String word = currentKey.getLetter();
-            int wordFreq = Integer.parseInt(currentKey.getFilename()); // n
-            outputKey.set(word, key.toString());
-            outputVal.set(String.valueOf(wordFreq), String.valueOf(sum));
-            output.collect(outputKey, outputVal);
-          }
-	    }
+            public void reduce(Text key, Iterator<MyCompositeKey> values, OutputCollector<MyCompositeKey, MyCompositeKey> output, Reporter reporter) throws IOException {
+                List <MyCompositeKey> valueList = new ArrayList<>();
+                int noOfWordsInDoc = 0;
+                while (values.hasNext()) {
+                    MyCompositeKey currentKey = values.next();
+                    int wordFreq = Integer.parseInt(currentKey.getComponents().get(1)); // n
+                    noOfWordsInDoc += wordFreq; // total number of words in file (N) 
+                    String word = currentKey.getComponents().get(0);
+                    valueList.add(new MyCompositeKey(word,String.valueOf(wordFreq)));
+                }
+                for(MyCompositeKey currentKey : valueList) {
+                    String word = currentKey.getComponents().get(0);
+                    int wordFreq =  Integer.parseInt(currentKey.getComponents().get(1)); // n
+                    outputKey.setComponents(Arrays.asList(word, key.toString()));
+                    outputVal.setComponents(Arrays.asList(String.valueOf(wordFreq), String.valueOf(noOfWordsInDoc)));
+                    output.collect(outputKey, outputVal);
+                }
+            }
 	 }
 }
