@@ -10,6 +10,8 @@ import code.Job1.WordFrequencyInDocMapper;
 import code.Job1.WordFrequencyInDocReducer;
 import code.Job2.NoOfWordsInDocMapper;
 import code.Job2.NoOfWordsInDocReducer;
+import code.Job3.CalculateTFIDFMapper;
+import code.Job3.CalculateTFIDFReducer;
 public class Main {
 
     public static void main(String[] args) throws Exception {
@@ -42,19 +44,18 @@ public class Main {
         conf2.setOutputValueClass(MyCompositeKey.class);
 
         conf2.setMapperClass(NoOfWordsInDocMapper.class);
-        //conf2.setCombinerClass(NoOfWordsInDocReducer.class);
         conf2.setReducerClass(NoOfWordsInDocReducer.class);
 	
         conf2.setInputFormat(TextInputFormat.class);
-        conf2.setOutputFormat(TextOutputFormat.class);
+        conf2.setOutputFormat(SequenceFileOutputFormat.class);
 
         conf2.setNumReduceTasks(1);
         FileInputFormat.setInputPaths(conf2, new Path(args[1])); // Input is Output of 1st Job 
         FileOutputFormat.setOutputPath(conf2, new Path(args[2]));
 
         JobClient.runJob(conf2);
-/*  
-        JOB 3
+  
+        //JOB 3
 
         JobConf conf3 = new JobConf(Job3.class);
         conf3.setJobName("Job3");
@@ -65,7 +66,6 @@ public class Main {
         conf3.setOutputValueClass(IntWritable.class);
 
         conf3.setMapperClass(CalculateTFIDFMapper.class);
-        //conf3.setCombinerClass(CalculateTFIDFReducer.class);
         conf3.setReducerClass(CalculateTFIDFReducer.class);
 	
         conf3.setInputFormat(SequenceFileInputFormat.class);
@@ -76,7 +76,7 @@ public class Main {
         FileOutputFormat.setOutputPath(conf3, new Path(args[3]));
 
         JobClient.runJob(conf3);
-*/
+
 
     }
 }
