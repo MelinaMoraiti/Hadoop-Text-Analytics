@@ -9,21 +9,17 @@ import org.apache.hadoop.util.*;
 
 public class Job2 {
 	// mapper 2
-	public static class NoOfWordsInDocMapper extends MapReduceBase implements Mapper<LongWritable, Text, Text, MyCompositeKey> {
+	public static class NoOfWordsInDocMapper extends MapReduceBase implements Mapper<MyCompositeKey, IntWritable, Text, MyCompositeKey> {
 	    private Text outputKey = new Text();
 	    private MyCompositeKey outputVal = new MyCompositeKey();
 
-	    public void map(LongWritable key, Text value, OutputCollector<Text, MyCompositeKey> output, Reporter reporter) throws IOException {
-	      String line = value.toString();
-	      StringTokenizer tokenizer = new StringTokenizer(line);
-	      while (tokenizer.hasMoreTokens()) {
-		    String docname = tokenizer.nextToken(); // 1st token
-		    String word = tokenizer.nextToken(); // 2nd token
-            int n = Integer.parseInt(tokenizer.nextToken()); // 3rd token
+	    public void map(MyCompositeKey key, IntWritable value, OutputCollector<Text, MyCompositeKey> output, Reporter reporter) throws IOException {
+		    String docname = key.getComponents().get(0); 
+		    String word = key.getComponents().get(1);
+            int wordFreqInDoc = value.get(); 
             outputKey.set(docname);
-            outputVal.setComponents(Arrays.asList(word, String.valueOf(n)));
-            output.collect(outputKey, outputVal);
-	      }      
+            outputVal.setComponents(Arrays.asList(word, String.valueOf(wordFreqInDoc)));
+            output.collect(outputKey, outputVal);    
 	    }
 	}
 	// reducer 2
