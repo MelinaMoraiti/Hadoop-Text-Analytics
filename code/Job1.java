@@ -14,6 +14,8 @@ public class Job1 {
 
 	    public void map(LongWritable key, Text value, OutputCollector<MyCompositeKey, IntWritable> output, Reporter reporter) throws IOException {
 	      String line = value.toString();
+		  //REmove special characters and punctuation
+	      line = line.replaceAll("[^a-zA-Z0-9\\s]",""); // remove all non-alphanumeric characters except whitesaces
 	      String filename = ((FileSplit) reporter.getInputSplit()).getPath().getName();
 	      
 	      StringTokenizer tokenizer = new StringTokenizer(line);
