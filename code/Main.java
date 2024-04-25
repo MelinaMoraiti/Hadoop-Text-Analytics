@@ -27,7 +27,7 @@ public class Main {
         conf.setReducerClass(WordFrequencyInDocReducer.class);
 
         conf.setInputFormat(TextInputFormat.class);
-        conf.setOutputFormat(TextOutputFormat.class);
+        conf.setOutputFormat(SequenceFileOutputFormat.class);
 
         conf.setNumReduceTasks(1);
 
@@ -46,7 +46,7 @@ public class Main {
         conf2.setMapperClass(NoOfWordsInDocMapper.class);
         conf2.setReducerClass(NoOfWordsInDocReducer.class);
 	
-        conf2.setInputFormat(TextInputFormat.class);
+        conf2.setInputFormat(SequenceFileInputFormat.class);
         conf2.setOutputFormat(SequenceFileOutputFormat.class);
 
         conf2.setNumReduceTasks(1);
