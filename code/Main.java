@@ -15,6 +15,12 @@ import code.Job3.CalculateTFIDFReducer;
 public class Main {
 
     public static void main(String[] args) throws Exception {
+        if (args.length != 5)
+        {
+		    System.out.println("Usage: hadoop jar <jar_name> code.Main <input_path1> <output_path1> <output_path2> <output_path3> <num_reducers>");
+		    System.exit(1);
+	    }
+        int numberOfReducers = Integer.parseInt(argv[4]);
         //JOB 1
         JobConf conf = new JobConf(Job1.class);
         conf.setJobName("Job1");
@@ -29,7 +35,7 @@ public class Main {
         conf.setInputFormat(TextInputFormat.class);
         conf.setOutputFormat(SequenceFileOutputFormat.class);
 
-        conf.setNumReduceTasks(1);
+        conf.setNumReduceTasks(numberOfReducers);
 
         FileInputFormat.setInputPaths(conf, new Path(args[0]));
         FileOutputFormat.setOutputPath(conf, new Path(args[1]));
@@ -49,7 +55,7 @@ public class Main {
         conf2.setInputFormat(SequenceFileInputFormat.class);
         conf2.setOutputFormat(SequenceFileOutputFormat.class);
 
-        conf2.setNumReduceTasks(1);
+        conf2.setNumReduceTasks(numberOfReducers);
         FileInputFormat.setInputPaths(conf2, new Path(args[1])); // Input is Output of 1st Job 
         FileOutputFormat.setOutputPath(conf2, new Path(args[2]));
 
@@ -71,7 +77,7 @@ public class Main {
         conf3.setInputFormat(SequenceFileInputFormat.class);
         conf3.setOutputFormat(TextOutputFormat.class);
 
-        conf3.setNumReduceTasks(1);
+        conf3.setNumReduceTasks(numberOfReducers);
         FileInputFormat.setInputPaths(conf3, new Path(args[2])); // Input is Output of 2ND Job 
         FileOutputFormat.setOutputPath(conf3, new Path(args[3]));
 
