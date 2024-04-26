@@ -29,11 +29,11 @@ hadoop jar tfidf.jar "$MAIN" "$INPUT_DIR" "$INTERMEDIATE_DIR" "$INTERMEDIATE_DIR
 
 #Print results
 echo "Print result outputs from Hadoop's HDFS..."
-hadoop fs -cat "$INTERMEDIATE_DIR"/part-00000
+hadoop fs -cat "$INTERMEDIATE_DIR"/part-*
 echo "============================================================="
-hadoop fs -cat "$INTERMEDIATE_DIR2"/part-00000
+hadoop fs -cat "$INTERMEDIATE_DIR2"/part-*
 echo "============================================================="
-hadoop fs -cat "$OUTPUT_DIR"/part-00000
+hadoop fs -cat "$OUTPUT_DIR"/part-*
 
 #Copy output part files from HDFS to local filesystem before removing 
 hadoop fs -get "$OUTPUT_DIR"/part* .
