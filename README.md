@@ -1,2 +1,2 @@
 # Hadoop-TFIDF
-An implementation of Word Count and TF-IDF calculation using Hadoop MapReduce framework.
+An implementation of number of files a term appears, maximum TF, TF-IDF calculation using Hadoop MapReduce framework.
