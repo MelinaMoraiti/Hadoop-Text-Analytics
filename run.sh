@@ -2,8 +2,8 @@
 
 # Check for the correct number of arguments
 
-if [ "$#" -ne 7 ]; then
-	echo "Usage $0: <input dir> <intermediate dir> <intermediate dir> <output dir> <classes dir> <package_name.main_class_name> <JAR name>"
+if [ "$#" -ne 8 ]; then
+	echo "Usage $0: <input dir> <intermediate dir> <intermediate dir> <output dir> <num of reducers> <classes dir> <package_name.main_class_name> <JAR name>"
 	exit 1
 fi
 
@@ -11,9 +11,10 @@ INPUT_DIR="$1"
 INTERMEDIATE_DIR="$2"
 INTERMEDIATE_DIR2="$3"
 OUTPUT_DIR="$4"
-CLASSES_DIR="$5"
-MAIN="$6"
-JAR_NAME="$7"
+NUM_REDUCERS="$5"
+CLASSES_DIR="$6"
+MAIN="$7"
+JAR_NAME="$8"
 
 #Create JAR file
 if [ -e "$JAR_NAME" ]; then
@@ -25,7 +26,7 @@ jar -cvf tfidf.jar -C "$CLASSES_DIR"/ .
 
 #Execute HADOOP job
 echo "Running Hadoop job ..."
-hadoop jar tfidf.jar "$MAIN" "$INPUT_DIR" "$INTERMEDIATE_DIR" "$INTERMEDIATE_DIR2" "$OUTPUT_DIR"
+hadoop jar tfidf.jar "$MAIN" "$INPUT_DIR" "$INTERMEDIATE_DIR" "$INTERMEDIATE_DIR2" "$OUTPUT_DIR" "$NUM_REDUCERS"
 
 #Print results
 echo "Print result outputs from Hadoop's HDFS..."
