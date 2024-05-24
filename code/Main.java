@@ -36,6 +36,8 @@ public class Main {
         conf.setOutputFormat(SequenceFileOutputFormat.class);
 
         conf.setNumReduceTasks(numberOfReducers);
+        //Set custom partitioning
+	    //job.setPartitionerClass(Job1Partitioner.class);
 
         FileInputFormat.setInputPaths(conf, new Path(args[0]));
         FileOutputFormat.setOutputPath(conf, new Path(args[1]));
@@ -56,6 +58,8 @@ public class Main {
         conf2.setOutputFormat(SequenceFileOutputFormat.class);
 
         conf2.setNumReduceTasks(numberOfReducers);
+        //Set custom partitioning
+	    //job.setPartitionerClass(Job1Partitioner.class);
         FileInputFormat.setInputPaths(conf2, new Path(args[1])); // Input is Output of 1st Job 
         FileOutputFormat.setOutputPath(conf2, new Path(args[2]));
 
@@ -78,6 +82,8 @@ public class Main {
         conf3.setOutputFormat(TextOutputFormat.class);
 
         conf3.setNumReduceTasks(numberOfReducers);
+        //Set custom partitioning
+	    //job.setPartitionerClass(Job1Partitioner.class);
         FileInputFormat.setInputPaths(conf3, new Path(args[2])); // Input is Output of 2ND Job 
         FileOutputFormat.setOutputPath(conf3, new Path(args[3]));
 
