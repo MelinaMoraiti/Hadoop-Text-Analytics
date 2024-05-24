@@ -37,7 +37,7 @@ public class Main {
 
         conf.setNumReduceTasks(numberOfReducers);
         //Set custom partitioning
-	    //job.setPartitionerClass(Job1Partitioner.class);
+	    conf.setPartitionerClass(Job1Partitioner.class);
 
         FileInputFormat.setInputPaths(conf, new Path(args[0]));
         FileOutputFormat.setOutputPath(conf, new Path(args[1]));
@@ -45,7 +45,7 @@ public class Main {
         JobClient.runJob(conf);
         //JOB 2
         JobConf conf2 = new JobConf(Job2.class);
-            conf2.setJobName("Job2");
+        conf2.setJobName("Job2");
 
         conf2.setMapOutputKeyClass(Text.class);
         conf2.setOutputKeyClass(MyCompositeKey.class);
@@ -59,7 +59,7 @@ public class Main {
 
         conf2.setNumReduceTasks(numberOfReducers);
         //Set custom partitioning
-	    //job.setPartitionerClass(Job1Partitioner.class);
+	    //conf2.setPartitionerClass(Job2Partitioner.class);
         FileInputFormat.setInputPaths(conf2, new Path(args[1])); // Input is Output of 1st Job 
         FileOutputFormat.setOutputPath(conf2, new Path(args[2]));
 
@@ -83,7 +83,7 @@ public class Main {
 
         conf3.setNumReduceTasks(numberOfReducers);
         //Set custom partitioning
-	    //job.setPartitionerClass(Job1Partitioner.class);
+	    //conf3.setPartitionerClass(Job3Partitioner.class);
         FileInputFormat.setInputPaths(conf3, new Path(args[2])); // Input is Output of 2ND Job 
         FileOutputFormat.setOutputPath(conf3, new Path(args[3]));
 
