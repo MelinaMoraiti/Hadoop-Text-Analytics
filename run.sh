@@ -22,11 +22,11 @@ if [ -e "$JAR_NAME" ]; then
 	rm "$JAR_NAME"
 fi
 echo "Creating JAR file ... "
-jar -cvf tfidf.jar -C "$CLASSES_DIR"/ .
+jar -cvf "$JAR_NAME" -C "$CLASSES_DIR"/ .
 
 #Execute HADOOP job
 echo "Running Hadoop job ..."
-hadoop jar tfidf.jar "$MAIN" "$INPUT_DIR" "$INTERMEDIATE_DIR" "$INTERMEDIATE_DIR2" "$OUTPUT_DIR" "$NUM_REDUCERS"
+hadoop jar "$JAR_NAME" "$MAIN" "$INPUT_DIR" "$INTERMEDIATE_DIR" "$INTERMEDIATE_DIR2" "$OUTPUT_DIR" "$NUM_REDUCERS"
 
 #Print results
 echo "Print result outputs from Hadoop's HDFS..."
