@@ -36,6 +36,7 @@ hadoop fs -cat "$INTERMEDIATE_DIR2"/part-*
 echo "============================================================="
 hadoop fs -cat "$OUTPUT_DIR"/part-*
 
+rm part* 2>/dev/null
 #Copy output part files from HDFS to local filesystem before removing 
 hadoop fs -get "$OUTPUT_DIR"/part* .
 
