@@ -28,7 +28,7 @@ jar -cvf "$JAR_NAME" -C "$CLASSES_DIR"/ .
 echo "Running Hadoop job ..."
 mkdir logs
 hadoop jar "$JAR_NAME" "$MAIN" "$INPUT_DIR" "$INTERMEDIATE_DIR" "$INTERMEDIATE_DIR2" "$OUTPUT_DIR" "$NUM_REDUCERS" &> logs/hadoop_job_output.log
-grep -E "Submitting tokens for job|Job job completed successfully" logs/hadoop_jobs_output.log &> logs/hadoop_jobs_runtimes.log
+grep -E "Submitting tokens for job|completed successfully" logs/hadoop_jobs_output.log &> logs/hadoop_jobs_runtimes.log
 
 #Print results
 echo "Print result outputs from Hadoop's HDFS..."
