@@ -26,7 +26,8 @@ jar -cvf "$JAR_NAME" -C "$CLASSES_DIR"/ .
 
 #Execute HADOOP job
 echo "Running Hadoop job ..."
-hadoop jar "$JAR_NAME" "$MAIN" "$INPUT_DIR" "$INTERMEDIATE_DIR" "$INTERMEDIATE_DIR2" "$OUTPUT_DIR" "$NUM_REDUCERS"
+mkdir logs
+hadoop jar "$JAR_NAME" "$MAIN" "$INPUT_DIR" "$INTERMEDIATE_DIR" "$INTERMEDIATE_DIR2" "$OUTPUT_DIR" "$NUM_REDUCERS" &> logs/hadoop_job_output.log
 
 #Print results
 echo "Print result outputs from Hadoop's HDFS..."
