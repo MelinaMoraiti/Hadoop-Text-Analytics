@@ -12,6 +12,9 @@ import code.Job2.NoOfWordsInDocMapper;
 import code.Job2.NoOfWordsInDocReducer;
 import code.Job3.CalculateTFIDFMapper;
 import code.Job3.CalculateTFIDFReducer;
+import code.Job1Partitioner;
+import code.Job2Partitioner;
+import code.Job3Partitioner;
 public class Main {
 
     public static void main(String[] args) throws Exception {
