@@ -7,7 +7,7 @@ import org.apache.hadoop.mapred.JobConf;
 
 public class Job1Partitioner implements Partitioner <MyCompositeKey, IntWritable> 
 {
-        @Override
+    @Override
 	public void configure(JobConf job) {
 	    // No configuration needed for this partitioner
 	}

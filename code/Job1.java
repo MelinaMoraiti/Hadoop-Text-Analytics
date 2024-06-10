@@ -7,7 +7,9 @@ import org.apache.hadoop.io.*;
 import org.apache.hadoop.mapred.*;
 import org.apache.hadoop.util.*;
 public class Job1 {
-	// mapper 1
+	// Mapper 1
+	// - Input: (docname, contents)
+	// - Output: ((word, docname), 1)
 	public static class WordFrequencyInDocMapper extends MapReduceBase implements Mapper<LongWritable, Text, MyCompositeKey, IntWritable> {
 	    private final static IntWritable one = new IntWritable(1);
 	    private MyCompositeKey mck = new MyCompositeKey();
