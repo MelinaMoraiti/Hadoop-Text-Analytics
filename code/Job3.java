@@ -6,7 +6,7 @@ import org.apache.hadoop.conf.*;
 import org.apache.hadoop.io.*;
 import org.apache.hadoop.mapred.*;
 import org.apache.hadoop.util.*;
-import org.w3c.dom.Text;
+
 
 public class Job3 {
 	// MAPPER 3
