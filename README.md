@@ -37,10 +37,10 @@ Easily build and run your project with the provided shell scripts:
 
 ### Parameters
 
-- <input dir>: Directory for input text files.
-- <intermediate dir>: Directory for intermediate output.
-- <output dir>: Directory for final output.
-- <num of reducers>: Number of reducers (1, 2, or 4).
-- <classes dir>: Directory with compiled classes.
+- <input_dir>: Directory for input text files.
+- <intermediate_dir>: Directory for intermediate output.
+- <output_dir>: Directory for final output.
+- <num_of_reducers>: Number of reducers (1, 2, or 4).
+- <classes_dir>: Directory with compiled classes.
 - <package_name.main_class_name>: Main class of your application.
-- <JAR name>: Name of the JAR file to execute.
+- <JAR_name>: Name of the JAR file to execute.
