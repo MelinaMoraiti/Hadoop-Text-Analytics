@@ -34,11 +34,13 @@ Easily build and run your project with the provided shell scripts:
 ```bash
 ./run.sh <input dir> <intermediate dir> <intermediate dir> <output dir> <num of reducers> <classes dir> <package_name.main_class_name> <JAR name>
 ```
+
 ### Parameters
-<input dir>: Directory for input text files.
-<intermediate dir>: Directory for intermediate output.
-<output dir>: Directory for final output.
-<num of reducers>: Number of reducers (1, 2, or 4).
-<classes dir>: Directory with compiled classes.
-<package_name.main_class_name>: Main class of your application.
-<JAR name>: Name of the JAR file to execute.
+
+- <input dir>: Directory for input text files.
+- <intermediate dir>: Directory for intermediate output.
+- <output dir>: Directory for final output.
+- <num of reducers>: Number of reducers (1, 2, or 4).
+- <classes dir>: Directory with compiled classes.
+- <package_name.main_class_name>: Main class of your application.
+- <JAR name>: Name of the JAR file to execute.
